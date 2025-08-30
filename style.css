@@ -157,3 +157,24 @@ body{
   .password-box input{ min-width:150px; font-size:14px; }
   .sidebar{ width:200px; left:-200px; }
 }
+
+/* --- envelope visual polish (appended) --- */
+
+/* ensure SVG scales smoothly and remains centered */
+#envelopeSVG { display:block; width:420px; max-width:92vw; height:auto; }
+
+/* animate the flapGroup like before (body class or container toggles) */
+.envelope-open #flapGroup,
+.envelope-open #flapGroup * {
+  transition: transform 0.95s cubic-bezier(.2,.9,.2,1);
+}
+
+/* the class your JS adds to move the envelope upwards */
+.envelope-move {
+  transform: translateY(-120px);
+  transition: transform 1.2s ease;
+}
+
+/* heart fade */
+#heart { transition: opacity .6s ease; }
+.hide-heart #heart { opacity: 0; }
