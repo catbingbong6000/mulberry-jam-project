@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Mulberry Jam project</title>
-  <link rel="icon" type="image/png" href="heart.png"> <!-- favicon heart -->
+  <!-- favicon -->
+  <link rel="icon" type="image/png" href="heart.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,14 +18,15 @@
   <!-- Sidebar -->
   <nav id="sidebar" class="sidebar" aria-hidden="true">
     <button id="closeSidebar" class="close-sidebar" aria-label="Close">×</button>
-    <ul>
+    <ul class="sidebar-list">
       <li><a href="letters.html?letter=1">Letter 1</a></li>
       <li><a href="letters.html?letter=2">Letter 2</a></li>
     </ul>
+    <!-- Contact stays pinned at bottom -->
     <div class="sidebar-bottom">
       <a href="contact.html">
         <img src="funny.png" alt="Funny image" class="contact-img" />
-        <span>Contact</span>
+        <span>Yohan</span>
       </a>
     </div>
   </nav>
@@ -55,29 +57,17 @@
             <stop offset="1" stop-color="rgba(0,0,0,0.02)"/>
           </linearGradient>
         </defs>
-
         <g filter="url(#softShadow)">
-          <rect x="10" y="44" rx="10" ry="10" width="280" height="132"
-            fill="url(#bodyGrad)" stroke="#e7c6be" stroke-width="3"/>
+          <rect x="10" y="44" rx="10" ry="10" width="280" height="132" fill="url(#bodyGrad)" stroke="#e7c6be" stroke-width="3"/>
         </g>
-
         <g id="flapGroup" transform-origin="150px 44px">
-          <polygon id="flap"
-            points="150,12 288,44 12,44"
-            fill="url(#flapGrad)" stroke="#e7c6be" stroke-width="3"/>
+          <polygon id="flap" points="150,12 288,44 12,44" fill="url(#flapGrad)" stroke="#e7c6be" stroke-width="3"/>
           <path d="M150 18 L268 42" stroke="url(#creaseGrad)" stroke-width="1" opacity="0.35"/>
           <path d="M150 18 L32 42" stroke="url(#creaseGrad)" stroke-width="1" opacity="0.35"/>
         </g>
-
         <rect x="22" y="66" width="256" height="100" rx="6" fill="#fffefc" opacity="0.9"/>
-
         <g id="heartGroup" transform="translate(0,0)">
-          <path id="heart"
-            d="M150 62
-               C141 50, 121 50, 121 66
-               C121 80, 150 96, 150 110
-               C150 96, 179 80, 179 66
-               C179 50, 159 50, 150 62 Z"
+          <path id="heart" d="M150 62 C141 50, 121 50, 121 66 C121 80, 150 96, 150 110 C150 96, 179 80, 179 66 C179 50, 159 50, 150 62 Z"
             fill="url(#heartGloss)" stroke="#b03a3a" stroke-width="1.2"/>
           <ellipse cx="142" cy="76" rx="6" ry="4" fill="rgba(255,255,255,0.6)"/>
         </g>
