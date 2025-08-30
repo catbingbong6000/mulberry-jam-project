@@ -1,39 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secret Letters</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Letters for You ❤️</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Envelope -->
-  <div class="envelope-container fade-in">
-    <div class="envelope">
-      <div class="flap"></div>
-      <div class="body"></div>
-      <div class="heart"></div>
-    </div>
-  </div>
-
-  <!-- Password Entry -->
-  <div class="password-container fade-in hidden">
-    <p>Enter Password:</p>
-    <input type="password" id="passwordInput" placeholder="Password">
-    <button onclick="checkPassword()">Enter</button>
-    <p id="errorMsg" class="error"></p>
-  </div>
-
-  <!-- Sidebar Button -->
-  <button id="sidebarToggle" class="sidebar-btn hidden">☰ Letters</button>
+  <!-- Sidebar toggle button (hidden until login) -->
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open letters">☰ Letters</button>
 
   <!-- Sidebar -->
-  <div id="sidebar" class="sidebar">
+  <nav id="sidebar" class="sidebar" aria-hidden="true">
+    <button id="closeSidebar" class="close-sidebar" aria-label="Close">×</button>
     <ul>
       <li><a href="letters.html?letter=1">Letter 1</a></li>
       <li><a href="letters.html?letter=2">Letter 2</a></li>
     </ul>
-  </div>
+  </nav>
+
+  <!-- Center area -->
+  <main class="center-area">
+    <!-- Envelope (SVG for crispness) -->
+    <div class="envelope-wrap" id="envelopeWrap">
+      <!-- SVG envelope: flap is grouped so we can animate it -->
+      <svg id="envelopeSVG" viewBox="0 0 300 200" width="360" height="240" aria-hidden="true">
+        <defs>
+          <clipPath id="rounded">
+            <rect x="10" y="40" rx="8" ry="8" width="280" height="140"></rect>
+          </clipPath>
+        </defs>
+
+        <!-- pocket / body -->
+        <rect x="10" y="40" rx="8" ry="8" width="280" height="140" fill="#ffffff" stroke="#e0b1a1" stroke-width="3" />
+        <!-- flap group -->
+        <g id="flapGroup" transform-origin="150px 40px">
+          <!-- flap triangle -->
+          <polygon id="flap" points="150,8 290,40 10,40" fill="#fff5f4" stroke="#e0b1a1" stroke-width="3"/>
+        </g>
+
+        <!-- heart seal (on flap center) -->
+        <g id="heartGroup">
+          <!-- using path for a heart -->
+          <path id="heart" d="M150 58
+            C140 42, 110 42, 110 66
+            C110 88, 150 106, 150 128
+            C150 106, 190 88, 190 66
+            C190 42, 160 42, 150 58 Z"
+            fill="#e74c4c" stroke="#c03a3a" stroke-width="1"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Welcome message (hidden until login) -->
+    <div id="welcome" class="welcome" aria-hidden="true"></div>
+
+    <!-- Password box (visible) -->
+    <div id="passwordBox" class="password-box" role="form" aria-label="Password box">
+      <label for="passwordInput" class="visually-hidden">Password</label>
+      <input id="passwordInput" type="password" placeholder="Enter password" autocomplete="off" />
+      <button id="enterBtn" type="button">Enter</button>
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
