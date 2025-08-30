@@ -86,3 +86,16 @@ enterBtn.addEventListener("click", checkPassword);
 
 // initial accessibility states
 sidebar.setAttribute("aria-hidden", "true");
+
+/* ================= THEME TOGGLE SCRIPT ================== */
+(function() {
+  const THEME_KEY = 'theme_pref';
+  const btn = document.getElementById('themeToggle');
+
+  // Determine initial theme:
+  function detectInitialTheme() {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === 'dark' || saved === 'light') return saved;
+
+    // prefer OS setting if available
+    if (window.matchMedia && window.matchMedia('(prefers-color
