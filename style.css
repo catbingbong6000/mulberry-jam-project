@@ -43,7 +43,7 @@ body{
   left:-220px; /* hidden by default */
   width:220px;
   height:100%;
-  background:#fff6f4;
+  background:var(--card); /* use variable so theme can affect it */
   box-shadow:2px 0 20px rgba(0,0,0,0.08);
   padding:28px 16px;
   transition:left .45s cubic-bezier(.2,.9,.2,1), opacity .3s;
@@ -154,86 +154,4 @@ body{
 /* responsive tweaks */
 @media (max-width:520px){
   #envelopeSVG{ width:320px; }
-  .password-box input{ min-width:150px; font-size:14px; }
-  .sidebar{ width:200px; left:-200px; }
-}
-
-/* --- envelope visual polish (appended) --- */
-
-/* ensure SVG scales smoothly and remains centered */
-#envelopeSVG { display:block; width:420px; max-width:92vw; height:auto; }
-
-/* animate the flapGroup like before (body class or container toggles) */
-.envelope-open #flapGroup,
-.envelope-open #flapGroup * {
-  transition: transform 0.95s cubic-bezier(.2,.9,.2,1);
-}
-
-/* the class your JS adds to move the envelope upwards */
-.envelope-move {
-  transform: translateY(-120px);
-  transition: transform 1.2s ease;
-}
-
-/* heart fade */
-#heart { transition: opacity .6s ease; }
-.hide-heart #heart { opacity: 0; }
-
-/* ------------------ RULED-PAPER SNIPPET (appended) ------------------ */
-/* Ensures letter pages use consistent ruled paper styling and text stays clear of the red margin */
-
-.paper {
-  width: 720px;
-  max-width: 96%;
-  background: linear-gradient(180deg, #fffdf8 0%, #fffdf6 100%);
-  padding: 44px 64px;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.04);
-}
-
-/* Ruled lines: consistent spacing */
-.paper::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 27px,
-    #d7e6f3 28px
-  );
-  opacity: 0.68;
-  pointer-events: none;
-}
-
-/* Red margin (left) */
-.margin-line {
-  position: absolute;
-  top: 20px;
-  left: 110px;
-  bottom: 20px;
-  width: 2px;
-  background: linear-gradient(180deg, rgba(243,182,176,0.9), rgba(243,182,176,0.6));
-  pointer-events: none;
-}
-
-/* Left offset so text won't sit under the margin */
-.letter-content {
-  position: relative;
-  z-index: 2;
-  line-height: 28px;
-  font-size: 18px;
-  white-space: pre-wrap;
-  margin-left: 40px; /* visual offset from page left */
-  padding-left: 24px; /* breathing room from the margin line */
-}
-
-/* Responsive adjustments */
-@media (max-width:640px) {
-  .paper { padding: 28px 18px; }
-  .margin-line { left: 70px; }
-  .letter-content { font-size:16px; line-height:24px; margin-left:30px; padding-left:18px; }
-}
+  .password-box input{ min
