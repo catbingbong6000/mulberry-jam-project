@@ -2,22 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For You ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secret Letters</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="envelope">
-    <div class="flap"></div>
-    <div class="heart">💌</div>
-  </div>
-
-  <div class="login">
-    <p>Enter the secret password to open your letters:</p>
-    <input type="password" id="passwordInput" placeholder="Password">
-    <button onclick="checkPassword()">Open</button>
+<body class="homepage">
+  <div class="envelope-container">
+    <div class="envelope" onclick="checkPassword()">
+      <div class="flap"></div>
+      <div class="heart">❤</div>
+    </div>
+    <p class="click-text">Click the envelope to open</p>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
