@@ -1,179 +1,159 @@
-/* Global */
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fffaf5;
-  font-family: "Courier New", monospace; /* typewriter vibe */
+/* Basic layout */
+:root{
+  --bg: #fff8f6;
+  --accent: #e89a8b;
+  --accent-dark: #d06f61;
+  --card: #ffffff;
+  --muted: #7a6f6a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: "Courier New", Courier, monospace; /* cozy typewriter */
+  background: var(--bg);
+  color: #222;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 
-/* Fade in effect */
-.fade-in {
-  animation: fadeIn 1.5s ease forwards;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.hidden { display: none; }
-
-/* Envelope */
-.envelope-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.envelope {
-  position: relative;
-  width: 220px;
-  height: 140px;
-  background: #fff;
-  border: 2px solid #d9d9d9;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.envelope .flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 110px solid transparent;
-  border-right: 110px solid transparent;
-  border-bottom: 70px solid #fff;
-  transform-origin: top;
-  transition: transform 1s ease;
-  z-index: 2;
-}
-.envelope.open .flap {
-  transform: rotateX(180deg);
-}
-.envelope .body {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-}
-.heart {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  background: red;
-  transform: translate(-50%, -50%) rotate(45deg);
-  border-radius: 50% 50% 0 0;
-}
-.heart::before,
-.heart::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  background: red;
-  border-radius: 50%;
-}
-.heart::before { top: -12px; left: 0; }
-.heart::after { left: -12px; top: 0; }
-
-/* Password box */
-.password-container {
-  text-align: center;
-}
-.password-container input {
-  padding: 8px 12px;
-  border: 2px solid #d9d9d9;
-  border-radius: 12px;
-  font-family: inherit;
-}
-.password-container button {
-  padding: 8px 16px;
-  margin-left: 6px;
-  border: none;
-  border-radius: 12px;
-  background: #ff6f61;
-  color: white;
-  cursor: pointer;
-  font-family: inherit;
-}
-.password-container button:hover {
-  background: #ff4a3d;
-}
-.error {
-  color: red;
-  font-size: 0.9em;
-}
-
-/* Sidebar button */
-.sidebar-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: #ff6f61;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 14px;
-  cursor: pointer;
-  z-index: 1000;
-  font-family: inherit;
-}
-.sidebar-btn:hover {
-  background: #ff4a3d;
+/* Sidebar toggle (left) */
+.sidebar-toggle{
+  position:fixed;
+  top:18px;
+  left:18px;
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:0 6px 14px rgba(0,0,0,0.12);
+  display:none; /* shown after login */
+  z-index:1200;
 }
 
 /* Sidebar */
-.sidebar {
-  position: fixed;
-  left: -200px;
-  top: 0;
-  width: 200px;
-  height: 100%;
-  background: #fff0ec;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-  transition: left 0.4s ease;
-  padding-top: 60px;
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-220px; /* hidden by default */
+  width:220px;
+  height:100%;
+  background:#fff6f4;
+  box-shadow:2px 0 20px rgba(0,0,0,0.08);
+  padding:28px 16px;
+  transition:left .45s cubic-bezier(.2,.9,.2,1), opacity .3s;
+  z-index:1100;
 }
-.sidebar.open { left: 0; }
-.sidebar ul {
-  list-style: none;
-  padding: 0;
+.sidebar.open{ left:0; }
+.sidebar .close-sidebar{
+  position:absolute;
+  top:10px;
+  right:10px;
+  border:none;
+  background:none;
+  font-size:22px;
+  cursor:pointer;
 }
-.sidebar li {
-  margin: 20px;
+.sidebar ul{ list-style:none; padding:34px 0 0 0; margin:0; }
+.sidebar li{ margin:12px 0; }
+.sidebar a{
+  color:#4b3a39;
+  text-decoration:none;
+  padding:8px 10px;
+  display:block;
+  border-radius:8px;
+  transition:background .18s, transform .12s;
 }
-.sidebar a {
-  text-decoration: none;
-  color: #333;
-  transition: color 0.2s;
-}
-.sidebar a:hover {
-  color: #ff6f61;
+.sidebar a:hover{
+  background: linear-gradient(90deg, rgba(232,158,147,.14), rgba(232,158,147,.06));
+  transform:translateX(6px);
+  color:var(--accent-dark);
 }
 
-/* Letters page */
-.letter {
-  width: 70%;
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 40px;
-  background: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  background-image: repeating-linear-gradient(
-    to bottom,
-    white 0px,
-    white 22px,
-    #cfd8dc 23px
-  );
-  font-family: "Courier New", monospace;
-  line-height: 24px;
+/* central area */
+.center-area{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+  max-width:1000px;
+  width:100%;
+  padding:20px;
 }
-.letter .date {
-  text-align: right;
-  margin-bottom: 20px;
-  margin-right: 10px;
-  font-size: 0.9em;
+
+/* envelope wrap - center it nicely */
+.envelope-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  perspective:900px; /* for nice flap 3D */
+}
+
+/* SVG envelope scaling */
+#envelopeSVG{ width:420px; max-width:92vw; height:auto; display:block; }
+
+/* Make flap animate in 3D */
+#flapGroup{ transform-origin:150px 40px; transition: transform 1s cubic-bezier(.2,.9,.2,1); transform-style:preserve-3d; }
+.envelope-open #flapGroup{ transform: translateY(-92px) rotateX(180deg); }
+
+/* when envelope moves up after login */
+.envelope-move{ transform: translateY(-120px); transition: transform 1.2s ease; }
+
+/* heart fade */
+#heart{ transition: opacity .6s ease; }
+.hide-heart #heart{ opacity:0; }
+
+/* welcome text */
+.welcome{
+  font-size:1.3rem;
+  color:var(--muted);
+  text-align:center;
+  opacity:0;
+  transform: translateY(10px);
+  transition: opacity .9s ease, transform .9s ease;
+  min-height:2.1em;
+}
+.welcome.show{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* password box */
+.password-box{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+  background:var(--card);
+  padding:12px 16px;
+  border-radius:12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.password-box input{
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid #e6d7d4;
+  min-width:220px;
+  font-family:inherit;
+}
+.password-box button{
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.password-box button:hover{ background:var(--accent-dark); }
+
+/* responsive tweaks */
+@media (max-width:520px){
+  #envelopeSVG{ width:320px; }
+  .password-box input{ min-width:150px; font-size:14px; }
+  .sidebar{ width:200px; left:-200px; }
 }
