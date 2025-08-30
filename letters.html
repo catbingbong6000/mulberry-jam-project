@@ -95,6 +95,13 @@
   </style>
 </head>
 <body>
+  <script>
+    // Apply saved theme preference (so letters page also respects dark mode)
+    if (localStorage.getItem('theme_pref') === 'dark') {
+      document.body.classList.add('dark');
+    }
+  </script>
+
   <article class="paper">
     <div class="margin-line" aria-hidden="true"></div>
 
