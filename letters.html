@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Letters</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Your Letters ❤️</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="sidebar">
-    <a href="index.html" class="sidebar-link">🏠 Home</a>
-    <a href="letters.html" class="sidebar-link">Letter 1</a>
-    <!-- Add new letters here later -->
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">×</button>
+    <h2>Letters</h2>
+    <ul>
+      <li><a href="letters.html?letter=1">Letter 1</a></li>
+      <li><a href="letters.html?letter=2">Letter 2</a></li>
+    </ul>
+    <a href="index.html" class="home-link">🏠 Home</a>
   </div>
 
-  <div class="content">
-    <div class="letter">
-      <h2>Letter 1</h2>
-      <p>My dearest,  
-      This is your first letter. More will appear here every day ❤️</p>
-    </div>
+  <!-- Sidebar toggle button -->
+  <button id="sidebarToggle" class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+  <!-- Letter Content -->
+  <div class="letter-content">
+    <h1 id="letterTitle">Letter</h1>
+    <p id="letterText">This is where the letter will show.</p>
   </div>
 
   <script src="script.js"></script>
