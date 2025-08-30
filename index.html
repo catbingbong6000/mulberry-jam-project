@@ -24,32 +24,71 @@
     <!-- Envelope (SVG for crispness) -->
     <div class="envelope-wrap" id="envelopeWrap">
       <!-- SVG envelope: flap is grouped so we can animate it -->
-      <svg id="envelopeSVG" viewBox="0 0 300 200" width="360" height="240" aria-hidden="true">
-        <defs>
-          <clipPath id="rounded">
-            <rect x="10" y="40" rx="8" ry="8" width="280" height="140"></rect>
-          </clipPath>
-        </defs>
+      <!-- REPLACE the <svg> block inside envelopeWrap with this exact SVG -->
+<svg id="envelopeSVG" viewBox="0 0 300 200" width="420" height="280" aria-hidden="true">
+  <defs>
+    <!-- subtle paper gradient -->
+    <linearGradient id="bodyGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffaf8"/>
+      <stop offset="1" stop-color="#fff5f2"/>
+    </linearGradient>
 
-        <!-- pocket / body -->
-        <rect x="10" y="40" rx="8" ry="8" width="280" height="140" fill="#ffffff" stroke="#e0b1a1" stroke-width="3" />
-        <!-- flap group -->
-        <g id="flapGroup" transform-origin="150px 40px">
-          <!-- flap triangle -->
-          <polygon id="flap" points="150,8 290,40 10,40" fill="#fff5f4" stroke="#e0b1a1" stroke-width="3"/>
-        </g>
+    <!-- flap gradient -->
+    <linearGradient id="flapGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff5f4"/>
+      <stop offset="1" stop-color="#ffecec"/>
+    </linearGradient>
 
-        <!-- heart seal (on flap center) -->
-        <g id="heartGroup">
-          <!-- using path for a heart -->
-          <path id="heart" d="M150 58
-            C140 42, 110 42, 110 66
-            C110 88, 150 106, 150 128
-            C150 106, 190 88, 190 66
-            C190 42, 160 42, 150 58 Z"
-            fill="#e74c4c" stroke="#c03a3a" stroke-width="1"/>
-        </g>
-      </svg>
+    <!-- glossy highlight for heart -->
+    <linearGradient id="heartGloss" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff7b7b"/>
+      <stop offset="1" stop-color="#e04646"/>
+    </linearGradient>
+
+    <!-- soft drop shadow filter -->
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+
+    <!-- small crease line -->
+    <linearGradient id="creaseGrad" x1="0" x2="1">
+      <stop offset="0" stop-color="rgba(0,0,0,0.06)"/>
+      <stop offset="1" stop-color="rgba(0,0,0,0.02)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- envelope body (pocket) -->
+  <g filter="url(#softShadow)">
+    <rect x="10" y="44" rx="10" ry="10" width="280" height="132" fill="url(#bodyGrad)" stroke="#e7c6be" stroke-width="3"/>
+  </g>
+
+  <!-- flap group (we rotate this) -->
+  <g id="flapGroup" transform-origin="150px 44px">
+    <polygon id="flap"
+      points="150,12 288,44 12,44"
+      fill="url(#flapGrad)" stroke="#e7c6be" stroke-width="3"/>
+    <!-- subtle triangle crease -->
+    <path d="M150 18 L268 42" stroke="url(#creaseGrad)" stroke-width="1" opacity="0.35"/>
+    <path d="M150 18 L32 42" stroke="url(#creaseGrad)" stroke-width="1" opacity="0.35"/>
+  </g>
+
+  <!-- inner letter peek (slightly visible under flap) -->
+  <rect x="22" y="66" width="256" height="100" rx="6" fill="#fffefc" opacity="0.9"/>
+
+  <!-- red heart seal (centered on flap bottom) -->
+  <g id="heartGroup" transform="translate(0,0)">
+    <path id="heart"
+      d="M150 62
+         C141 50, 121 50, 121 66
+         C121 80, 150 96, 150 110
+         C150 96, 179 80, 179 66
+         C179 50, 159 50, 150 62 Z"
+      fill="url(#heartGloss)" stroke="#b03a3a" stroke-width="1.2"/>
+    <!-- small glossy highlight -->
+    <ellipse cx="142" cy="76" rx="6" ry="4" fill="rgba(255,255,255,0.6)"/>
+  </g>
+</svg>
+
     </div>
 
     <!-- Welcome message (hidden until login) -->
