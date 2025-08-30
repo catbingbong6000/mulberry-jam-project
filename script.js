@@ -36,11 +36,11 @@ function greetingText() {
 
   const h = now.getHours();
 
-  if (h < 12) return `Good morning, my love ☀️`;
+  if (h < 12) return `Good morning, my jaanu ☀️`;
 
-  if (h < 18) return `Good afternoon, my love 🌼`;
+  if (h < 18) return `Good afternoon, my jaan 🌼`;
 
-  return `Good evening, my love 🌙`;
+  return `Good evening, my jaanu 🌙`;
 
 }
 
