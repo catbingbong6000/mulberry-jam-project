@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secret Letters</title>
-  <link rel="stylesheet" href="style.css">
+  <title>For You ❤️</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="homepage">
-  <div class="envelope-container">
-    <div class="envelope" onclick="checkPassword()">
+<body>
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">×</button>
+    <h2>Letters</h2>
+    <ul>
+      <li><a href="letters.html?letter=1">Letter 1</a></li>
+      <li><a href="letters.html?letter=2">Letter 2</a></li>
+    </ul>
+    <a href="index.html" class="home-link">🏠 Home</a>
+  </div>
+
+  <!-- Sidebar toggle button -->
+  <button id="sidebarToggle" class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+  <!-- Password Screen -->
+  <div id="passwordScreen" class="fade-in">
+    <h2>Enter Password</h2>
+    <input type="password" id="passwordInput" placeholder="Password..." />
+    <button onclick="checkPassword()">Submit</button>
+    <p id="error" style="color:red; display:none;">Wrong password, try again.</p>
+  </div>
+
+  <!-- Envelope Animation -->
+  <div id="envelopeScreen" class="fade-in hidden">
+    <div class="envelope">
       <div class="flap"></div>
-      <div class="heart">❤</div>
+      <div class="pocket"></div>
+      <div class="letter">❤️</div>
     </div>
-    <p class="click-text">Click the envelope to open</p>
   </div>
 
   <script src="script.js"></script>
