@@ -21,10 +21,10 @@
       display: flex;
       justify-content: center;
       padding: 40px 20px;
-      transition: background 0.6s ease; /* Add transition for smooth theme change */
+      transition: background 0.6s ease;
     }
 
-    /* ===== DARK MODE STYLES ADDED HERE ===== */
+    /* ===== DARK MODE STYLES ===== */
     body.dark {
         background: #1c1b1b;
     }
@@ -109,7 +109,7 @@
 </head>
 <body>
   <script>
-    // Apply saved theme preference (so letters page also respects dark mode)
+    // Apply saved theme preference
     if (localStorage.getItem('theme_pref') === 'dark') {
       document.body.classList.add('dark');
     }
@@ -131,7 +131,7 @@ Yours always,
   </article>
 
   <script>
-    // optional: auto-fill date if you prefer
+    // auto-fill date
     document.getElementById('letterDate').textContent = new Date().toLocaleDateString(undefined, {
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
