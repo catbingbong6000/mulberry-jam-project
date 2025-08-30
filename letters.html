@@ -1,32 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Letters ❤️</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Letters to You</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #fdfcf7;
+      font-family: "Georgia", serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      color: #444;
+    }
+
+    .letter-container {
+      width: 80%;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 40px 30px;
+      background: repeating-linear-gradient(
+        #fff,
+        #fff 28px,
+        #cde5ff 29px
+      );
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .letter-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50px;
+      bottom: 0;
+      width: 2px;
+      background: #f28b82; /* red margin line */
+    }
+
+    .letter {
+      white-space: pre-wrap;
+      line-height: 28px;
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    .date {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .back-home {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .back-home a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #444;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-home a:hover {
+      background: #666;
+    }
+  </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <div id="sidebar" class="sidebar">
-    <button class="close-btn" onclick="toggleSidebar()">×</button>
-    <h2>Letters</h2>
-    <ul>
-      <li><a href="letters.html?letter=1">Letter 1</a></li>
-      <li><a href="letters.html?letter=2">Letter 2</a></li>
-    </ul>
-    <a href="index.html" class="home-link">🏠 Home</a>
+  <header>
+    <h1>Letters to My Love</h1>
+  </header>
+
+  <div class="letter-container">
+    <div class="date">August 30, 2025</div>
+    <div class="letter">
+      Dear Love,  
+      <br><br>
+      This is the very first letter on our special site.  
+      Every day, I’ll leave you a new one here, like a diary written only for you.  
+      <br><br>
+      Yours always,  
+      ♥
+    </div>
   </div>
 
-  <!-- Sidebar toggle button -->
-  <button id="sidebarToggle" class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-
-  <!-- Letter Content -->
-  <div class="letter-content">
-    <h1 id="letterTitle">Letter</h1>
-    <p id="letterText">This is where the letter will show.</p>
+  <div class="back-home">
+    <a href="index.html">Back to Home</a>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
