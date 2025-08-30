@@ -1,239 +1,151 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="utf-8" />
-
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-
   <title>Letter 1</title>
 
-
   <!-- reuse same cozy font -->
-
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-
-
-  <!-- If you already use a global style.css, you can remove the <style> below
-
-       and let style.css contain the .paper rules. This file includes them inline
-
-       so it will definitely look right if you just paste it. -->
+  <link rel="stylesheet" href="style.css" />
 
   <style>
-
     :root {
-
       --paper: #fffdf8;
-
       --line: #d7e6f3;
-
       --margin: #f3b6b0;
-
       --ink: #222;
-
     }
-
     body {
-
       margin: 0;
-
       font-family: 'Special Elite', cursive;
-
       background: #faf4f2;
-
       display: flex;
-
       justify-content: center;
-
       padding: 40px 20px;
-
+      transition: background 0.6s ease, color 0.6s ease;
     }
-
 
     .paper {
-
       width: 720px;
-
       max-width: 96%;
-
       background: linear-gradient(180deg, var(--paper) 0%, #fffdf6 100%);
-
       padding: 44px 64px;
-
       border-radius: 10px;
-
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-
       position: relative;
-
       overflow: hidden;
-
       border: 1px solid rgba(0,0,0,0.04);
-
     }
-
-
-    /* ruled lines */
 
     .paper::before{
-
       content: "";
-
       position: absolute;
-
       inset: 0;
-
       background-image: repeating-linear-gradient(
-
         to bottom,
-
         transparent 0px,
-
         transparent 27px,
-
         var(--line) 28px
-
       );
-
       opacity: 0.68;
-
       pointer-events: none;
-
     }
-
-
-    /* red margin line */
 
     .margin-line {
-
       position: absolute;
-
       top: 20px;
-
       left: 110px;
-
       bottom: 20px;
-
       width: 2px;
-
       background: linear-gradient(180deg, rgba(243,182,176,0.9), rgba(243,182,176,0.6));
-
       pointer-events: none;
-
     }
-
 
     .date {
-
       text-align: right;
-
       color: #555;
-
       margin-bottom: 10px;
-
       font-size: 14px;
-
     }
-
-
-    /* ensure content sits to the right of the margin line */
 
     .letter-content {
-
       position: relative;
-
       z-index: 2;
-
       color: var(--ink);
-
       line-height: 28px;
-
       font-size: 18px;
-
       white-space: pre-wrap;
-
-      margin-left: 30px;      /* small internal padding */
-
-      padding-left: 24px;     /* extra padding so text never touches margin line */
-
-      /* IMPORTANT: add left offset so text visually starts to the right of the margin */
-
+      margin-left: 30px;
+      padding-left: 24px;
       margin-inline-start: 40px;
-
     }
-
-
-    /* Extra safety: prevent text under the margin line on small screens */
 
     @media (max-width:640px) {
-
       .paper { padding: 28px 18px; }
-
       .margin-line { left: 70px; }
-
       .letter-content { font-size:16px; line-height:24px; margin-inline-start:30px; padding-left:18px; }
-
     }
 
+    /* Dark mode for letters */
+    body.dark {
+      background: #1c1b1b;
+      color: #f5f5f5;
+    }
+    body.dark .paper {
+      background: linear-gradient(180deg, #2a2929 0%, #252525 100%);
+      border-color: rgba(255,255,255,0.06);
+    }
+    body.dark .date {
+      color: #bbb;
+    }
+    body.dark .letter-content {
+      color: #f5f5f5;
+    }
   </style>
-
 </head>
-
 <body>
-
-  <script>
-
-    // Apply saved theme preference (so letters page also respects dark mode)
-
-    if (localStorage.getItem('theme_pref') === 'dark') {
-
-      document.body.classList.add('dark');
-
-    }
-
-  </script>
-
+  <!-- Dark mode toggle button -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 
   <article class="paper">
-
     <div class="margin-line" aria-hidden="true"></div>
-
-
     <div class="date" id="letterDate">August 30, 2025</div>
-
-
     <div class="letter-content" id="letterText">
-
 Dear love,
-
 
 This is the first letter on our site — now with the proper ruled-paper look. The text is offset so it doesn't sit on the red margin line.
 
-
 Yours always,
-
 — Y
-
     </div>
-
   </article>
 
-
   <script>
+    // theme toggle same as index
+    (function() {
+      const THEME_KEY = 'theme_pref';
+      const themeToggle = document.getElementById("themeToggle");
 
-    // optional: auto-fill date if you prefer
+      // load saved theme
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved === 'dark') {
+        document.body.classList.add('dark');
+        themeToggle.textContent = "☀️";
+      }
 
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        const isDark = document.body.classList.contains("dark");
+        themeToggle.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+      });
+    })();
+
+    // auto-fill date
     document.getElementById('letterDate').textContent = new Date().toLocaleDateString(undefined, {
-
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-
     });
-
   </script>
-
 </body>
-
-</html> 
+</html>
