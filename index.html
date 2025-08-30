@@ -10,6 +10,29 @@
   <!-- Sidebar toggle button (hidden until login) -->
   <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open letters">☰ Letters</button>
 
+  <!-- THEME TOGGLE: top-right -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+    <!-- Sun icon -->
+    <svg class="icon icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <circle cx="12" cy="12" r="4" fill="currentColor"/>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/>
+        <line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/>
+        <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"/>
+        <line x1="18.4" y1="5.6" x2="19.8" y2="4.2"/>
+      </g>
+    </svg>
+
+    <!-- Moon icon -->
+    <svg class="icon icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <path fill="currentColor" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+  </button>
+
   <!-- Sidebar -->
   <nav id="sidebar" class="sidebar" aria-hidden="true">
     <button id="closeSidebar" class="close-sidebar" aria-label="Close">×</button>
@@ -24,7 +47,6 @@
     <!-- Envelope (SVG for crispness) -->
     <div class="envelope-wrap" id="envelopeWrap">
       <!-- SVG envelope: flap is grouped so we can animate it -->
-      <!-- REPLACE the <svg> block inside envelopeWrap with this exact SVG -->
 <svg id="envelopeSVG" viewBox="0 0 300 200" width="420" height="280" aria-hidden="true">
   <defs>
     <!-- subtle paper gradient -->
@@ -46,62 +68,4 @@
     </linearGradient>
 
     <!-- soft drop shadow filter -->
-    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.12"/>
-    </filter>
-
-    <!-- small crease line -->
-    <linearGradient id="creaseGrad" x1="0" x2="1">
-      <stop offset="0" stop-color="rgba(0,0,0,0.06)"/>
-      <stop offset="1" stop-color="rgba(0,0,0,0.02)"/>
-    </linearGradient>
-  </defs>
-
-  <!-- envelope body (pocket) -->
-  <g filter="url(#softShadow)">
-    <rect x="10" y="44" rx="10" ry="10" width="280" height="132" fill="url(#bodyGrad)" stroke="#e7c6be" stroke-width="3"/>
-  </g>
-
-  <!-- flap group (we rotate this) -->
-  <g id="flapGroup" transform-origin="150px 44px">
-    <polygon id="flap"
-      points="150,12 288,44 12,44"
-      fill="url(#flapGrad)" stroke="#e7c6be" stroke-width="3"/>
-    <!-- subtle triangle crease -->
-    <path d="M150 18 L268 42" stroke="url(#creaseGrad)" stroke-width="1" opacity="0.35"/>
-    <path d="M150 18 L32 42" stroke="url(#creaseGrad)" stroke-width="1" opacity="0.35"/>
-  </g>
-
-  <!-- inner letter peek (slightly visible under flap) -->
-  <rect x="22" y="66" width="256" height="100" rx="6" fill="#fffefc" opacity="0.9"/>
-
-  <!-- red heart seal (centered on flap bottom) -->
-  <g id="heartGroup" transform="translate(0,0)">
-    <path id="heart"
-      d="M150 62
-         C141 50, 121 50, 121 66
-         C121 80, 150 96, 150 110
-         C150 96, 179 80, 179 66
-         C179 50, 159 50, 150 62 Z"
-      fill="url(#heartGloss)" stroke="#b03a3a" stroke-width="1.2"/>
-    <!-- small glossy highlight -->
-    <ellipse cx="142" cy="76" rx="6" ry="4" fill="rgba(255,255,255,0.6)"/>
-  </g>
-</svg>
-
-    </div>
-
-    <!-- Welcome message (hidden until login) -->
-    <div id="welcome" class="welcome" aria-hidden="true"></div>
-
-    <!-- Password box (visible) -->
-    <div id="passwordBox" class="password-box" role="form" aria-label="Password box">
-      <label for="passwordInput" class="visually-hidden">Password</label>
-      <input id="passwordInput" type="password" placeholder="Enter password" autocomplete="off" />
-      <button id="enterBtn" type="button">Enter</button>
-    </div>
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    <filter id="softShadow" x="-50%" y="-50%" width="20
