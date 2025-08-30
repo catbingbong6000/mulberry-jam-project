@@ -1,6 +1,7 @@
 // ===== CONFIGURE PASSWORD HERE =====
 const CORRECT_PASSWORD = "jamjam";
 // ===================================
+
 const enterBtn = document.getElementById("enterBtn");
 const passwordInput = document.getElementById("passwordInput");
 const envelopeWrap = document.getElementById("envelopeWrap");
@@ -17,9 +18,9 @@ const themeToggle = document.getElementById("themeToggle");
 function greetingText() {
   const now = new Date();
   const h = now.getHours();
-  if (h < 12) return "Good morning, my love ☀️";
-  if (h < 18) return "Good afternoon, my love 🌼";
-  return "Good evening, my love 🌙";
+  if (h < 12) return `Good morning, my love ☀️`;
+  if (h < 18) return `Good afternoon, my love 🌼`;
+  return `Good evening, my love 🌙`;
 }
 
 // show sidebar toggle (after login)
@@ -37,7 +38,7 @@ function showSidebarToggle() {
   }
 }
 
-// main check function
+// main check
 function checkPassword() {
   const val = passwordInput.value.trim();
   if (val === CORRECT_PASSWORD) {
@@ -53,15 +54,12 @@ function checkPassword() {
       showSidebarToggle();
     }, 950);
   } else {
-    passwordBox.animate(
-      [
-        { transform: "translateX(0)" },
-        { transform: "translateX(-8px)" },
-        { transform: "translateX(8px)" },
-        { transform: "translateX(0)" }
-      ],
-      { duration: 320, iterations: 1 }
-    );
+    passwordBox.animate([
+      { transform: 'translateX(0)' },
+      { transform: 'translateX(-8px)' },
+      { transform: 'translateX(8px)' },
+      { transform: 'translateX(0)' }
+    ], { duration: 320, iterations: 1 });
     welcome.classList.remove("show");
     passwordInput.value = "";
   }
@@ -78,20 +76,19 @@ sidebar.setAttribute("aria-hidden", "true");
 
 /* ================= THEME TOGGLE SCRIPT ================== */
 (function() {
-  const THEME_KEY = "theme_pref";
-
-  function applyTheme(isDark) {
-    document.body.classList.toggle("dark", isDark);
-    themeToggle.textContent = isDark ? "☀️" : "🌙";
-    localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
-  }
+  const THEME_KEY = 'theme_pref';
 
   // load saved theme
   const saved = localStorage.getItem(THEME_KEY);
-  if (saved === "dark") applyTheme(true);
+  if (saved === 'dark') {
+    document.body.classList.add('dark');
+    themeToggle.textContent = "☀️";
+  }
 
   themeToggle.addEventListener("click", () => {
-    const isDark = !document.body.classList.contains("dark");
-    applyTheme(isDark);
+    document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
   });
 })();
