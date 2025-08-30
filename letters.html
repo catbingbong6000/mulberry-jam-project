@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Letters</title>
+  <title>Letter 1</title>
 
-  <!-- cozy typewriter font -->
+  <!-- reuse same cozy font -->
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
+  <!-- If you already use a global style.css, you can remove the <style> below
+       and let style.css contain the .paper rules. This file includes them inline
+       so it will definitely look right if you just paste it. -->
   <style>
     :root {
       --paper: #fffdf8;
-      --line: #d7e6f3;    /* blue-ish ruled lines */
-      --margin: #f3b6b0;  /* red margin */
+      --line: #d7e6f3;
+      --margin: #f3b6b0;
       --ink: #222;
     }
     body {
@@ -36,7 +39,7 @@
       border: 1px solid rgba(0,0,0,0.04);
     }
 
-    /* ruled lines: 28px spacing */
+    /* ruled lines */
     .paper::before{
       content: "";
       position: absolute;
@@ -69,39 +72,38 @@
       font-size: 14px;
     }
 
+    /* ensure content sits to the right of the margin line */
     .letter-content {
       position: relative;
-      z-index: 2; /* sit above the ruled lines pseudo-element */
+      z-index: 2;
       color: var(--ink);
-      line-height: 28px; /* match the ruled lines */
+      line-height: 28px;
       font-size: 18px;
       white-space: pre-wrap;
-      margin-left: 10px; /* sits to the right of the margin line */
+      margin-left: 30px;      /* small internal padding */
+      padding-left: 24px;     /* extra padding so text never touches margin line */
+      /* IMPORTANT: add left offset so text visually starts to the right of the margin */
+      margin-inline-start: 40px;
     }
 
-    .signature {
-      margin-top: 28px;
-      text-align: left;
-      font-size: 18px;
-    }
-
-    /* small responsive */
+    /* Extra safety: prevent text under the margin line on small screens */
     @media (max-width:640px) {
       .paper { padding: 28px 18px; }
       .margin-line { left: 70px; }
-      .letter-content { font-size:16px; line-height:24px; }
+      .letter-content { font-size:16px; line-height:24px; margin-inline-start:30px; padding-left:18px; }
     }
   </style>
 </head>
 <body>
   <article class="paper">
     <div class="margin-line" aria-hidden="true"></div>
-    <div class="date" id="letterDate"></div>
+
+    <div class="date" id="letterDate">August 30, 2025</div>
 
     <div class="letter-content" id="letterText">
 Dear love,
 
-This is your first letter on our little website. It will sit on cozy ruled paper so you can scroll back and reread whenever you want.
+This is the first letter on our site — now with the proper ruled-paper look. The text is offset so it doesn't sit on the red margin line.
 
 Yours always,
 — Y
@@ -109,7 +111,7 @@ Yours always,
   </article>
 
   <script>
-    // auto-fill the date if you like
+    // optional: auto-fill date if you prefer
     document.getElementById('letterDate').textContent = new Date().toLocaleDateString(undefined, {
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
