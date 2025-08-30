@@ -1,11 +1,16 @@
-/* Dark mode tweaks */
+/* extra dark mode tweaks for sidebar links */
 body.dark .sidebar a {
-  color: #ff8dbb; /* lighter pink links in dark mode */
+  color: #ff9ec6; /* lighter pink */
 }
 body.dark .sidebar a:hover {
-  color: #ffa3cc;
+  color: #ffb5d4;
 }
 
+/* contact pinned bottom */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
 .sidebar-bottom {
   margin-top: auto;
   padding-top: 16px;
@@ -19,10 +24,11 @@ body.dark .sidebar a:hover {
   font-size: 0.95rem;
 }
 body.dark .sidebar-bottom a {
-  color: #ff8dbb;
+  color: #ff9ec6;
 }
 .contact-img {
   width: 28px;
   height: 28px;
   border-radius: 50%;
+  object-fit: cover;
 }
