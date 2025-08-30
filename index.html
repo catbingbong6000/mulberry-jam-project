@@ -3,32 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For My Love</title>
+  <title>Secret Letters</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <!-- Envelope -->
-    <div class="envelope" id="envelope">
+  <!-- Envelope -->
+  <div class="envelope-container fade-in">
+    <div class="envelope">
       <div class="flap"></div>
-      <div class="pocket"></div>
+      <div class="body"></div>
+      <div class="heart"></div>
     </div>
-
-    <!-- Password Box -->
-    <div class="password-box" id="passwordBox">
-      <p>Enter Password</p>
-      <input type="password" id="passwordInput" placeholder="Enter here">
-      <button id="enterBtn">Enter</button>
-    </div>
-
-    <!-- Welcome Message -->
-    <div class="welcome" id="welcome"></div>
   </div>
 
+  <!-- Password Entry -->
+  <div class="password-container fade-in hidden">
+    <p>Enter Password:</p>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button onclick="checkPassword()">Enter</button>
+    <p id="errorMsg" class="error"></p>
+  </div>
+
+  <!-- Sidebar Button -->
+  <button id="sidebarToggle" class="sidebar-btn hidden">☰ Letters</button>
+
   <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <a href="letters.html">📜 Letters</a>
+  <div id="sidebar" class="sidebar">
+    <ul>
+      <li><a href="letters.html?letter=1">Letter 1</a></li>
+      <li><a href="letters.html?letter=2">Letter 2</a></li>
+    </ul>
   </div>
 
   <script src="script.js"></script>
